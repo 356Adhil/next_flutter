@@ -1,138 +1,189 @@
 "use client";
-import { Camera, Clock, Calendar, ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import {
+  Camera,
+  Clock,
+  Calendar,
+  ArrowRight,
+  Globe,
+  Sparkles,
+} from "lucide-react";
+
+const FloatingElements = () => (
+  <div className="fixed inset-0 -z-10">
+    {/* Dark gradient background */}
+    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#0C1222,#000000)]" />
+
+    {/* Animated grid */}
+    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_100%_100%_at_50%_0%,black_70%,transparent_100%)]" />
+
+    {/* Ambient light effects */}
+    <div className="absolute -left-32 top-0 h-[400px] w-[400px] rounded-full bg-emerald-500/20 blur-[128px]" />
+    <div className="absolute -right-32 bottom-0 h-[400px] w-[400px] rounded-full bg-blue-500/20 blur-[128px]" />
+  </div>
+);
 
 export default function Home() {
-  const apps = {
-    eventhex: {
-      title: "EventHex",
-      description: "Complete event experience platform",
-      icon: <Calendar className="w-6 h-6" />,
-      image: "main.png",
-      features: [
-        "Connect with other attendees",
-        "Session scheduling & bookings",
-        "Networking opportunities",
-        "Event highlights & photos",
-        "Interactive event map",
-        "Real-time notifications",
-      ],
-      path: "/eventhex",
-    },
-    tv: {
-      title: "Tv App",
-      description: "Live session tracking & schedules",
-      icon: <Clock className="w-6 h-6" />,
-      image: "main.png",
-      features: [
-        "Live session tracking",
-        "Multi-stage schedule view",
-        "Session timings & details",
-        "Stage-wise organization",
-        "Upcoming session alerts",
-      ],
-      path: "/tv",
-    },
-    instasnap: {
-      title: "InstaSnap",
-      description: "Event photography made social",
+  const [selectedPlatform, setSelectedPlatform] = useState(null);
+
+  const platforms = [
+    {
+      id: "instasnap",
+      name: "InstaSnap",
+      title: "Event Photography",
+      description: "AI-enhanced photo sharing platform",
       icon: <Camera className="w-6 h-6" />,
-      image: "main.png",
-      features: [
-        "Instant photo sharing",
-        "Event-specific galleries",
-        "Social media integration",
-        "Collaborative albums",
-      ],
-      path: "/instasnap",
+      color: "blue",
+      features: ["Instant Sharing", "Auto Enhancement", "Smart Albums"],
     },
-  };
+    {
+      id: "eventhex",
+      name: "EventHex",
+      title: "Smart Event Management",
+      description: "Complete platform for seamless event organization",
+      icon: <Calendar className="w-6 h-6" />,
+      color: "emerald",
+      features: [
+        "AI-Powered Networking",
+        "Real-time Analytics",
+        "Event Planning",
+      ],
+    },
+    {
+      id: "Tv App",
+      name: "Tv App",
+      title: "Intelligent Session Manager",
+      description: "Track and manage live sessions effortlessly",
+      icon: <Clock className="w-6 h-6" />,
+      color: "violet",
+      features: [
+        "Live Session Tracking",
+        "Smart Notifications",
+        "Multi-stage View",
+      ],
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-[#1A1D24] text-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 bg-[#1A1D24]/80 backdrop-blur-md z-50 border-b border-gray-800">
-        <div className="container mx-auto px-4 py-4">
+    <div className="min-h-screen text-white overflow-x-hidden">
+      <FloatingElements />
+
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Calendar className="w-6 h-6 text-emerald-500" />
-              <span className="font-bold text-xl">EventHex Platform</span>
+            <div className="flex items-center gap-3">
+              <Globe className="w-8 h-8 text-emerald-500" />
+              <span className="text-lg font-medium">EventHex</span>
             </div>
-            <div className="flex gap-4">
-              {Object.entries(apps).map(([key, app]) => (
-                <a
-                  key={key}
-                  href={app.path}
-                  className="px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors"
+
+            <nav className="hidden md:flex items-center gap-8">
+              {platforms.map((platform) => (
+                <button
+                  key={platform.id}
+                  onClick={() => setSelectedPlatform(platform.id)}
+                  className={`text-sm transition-colors ${
+                    selectedPlatform === platform.id
+                      ? "text-white"
+                      : "text-gray-400 hover:text-white"
+                  }`}
                 >
-                  {app.title}
-                </a>
+                  {platform.name}
+                </button>
               ))}
-            </div>
+            </nav>
           </div>
         </div>
-      </nav>
+      </header>
 
-      {/* App Cards */}
-      <div className="container mx-auto px-4 pt-32">
-        <div className="grid lg:grid-cols-3 gap-8">
-          {Object.entries(apps).map(([key, app]) => (
-            <div
-              key={key}
-              className="relative flex flex-col bg-[#22262F] rounded-2xl shadow-xl overflow-hidden h-full"
-            >
-              {/* Card Content */}
-              <div className="p-6 flex-1 flex flex-col">
-                {/* Header */}
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center text-emerald-500">
-                    {app.icon}
-                  </div>
-                  <div>
-                    <h2 className="text-xl font-semibold">{app.title}</h2>
-                    <p className="text-sm text-gray-400">{app.description}</p>
-                  </div>
-                </div>
+      {/* Main Content */}
+      <main className="relative pt-32 pb-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          {/* Hero Section */}
+          <div className="text-center mb-20">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              EventHex: Where Events
+              <span className="bg-gradient-to-r from-emerald-500 to-blue-500 text-transparent bg-clip-text">
+                {" "}
+                Come Alive
+              </span>
+            </h1>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Discover our suite of tools designed to enhance your event
+              experience
+            </p>
+          </div>
 
-                {/* Image */}
-                <div className="aspect-[3/2] rounded-xl overflow-hidden bg-gray-800 mb-4">
-                  <img
-                    src={app.image}
-                    alt={app.title}
-                    className="w-full h-full object-contain"
+          {/* Platform Cards */}
+          <div className="grid md:grid-cols-3 gap-6">
+            {platforms.map((platform) => (
+              <div
+                key={platform.id}
+                className="group relative"
+                onMouseEnter={() => setSelectedPlatform(platform.id)}
+                onMouseLeave={() => setSelectedPlatform(null)}
+              >
+                {/* Glass Card */}
+                <div className="relative h-full p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:scale-[1.02]">
+                  {/* Hover Effect */}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-b from-${platform.color}-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity`}
                   />
-                  <div className="text-center py-4">
-                    You're just one selfie away from your event photos
+
+                  {/* Content */}
+                  <div className="relative space-y-6">
+                    {/* Header */}
+                    <div className="flex items-center justify-between">
+                      <div
+                        className={`p-2 rounded-xl bg-${platform.color}-500/10`}
+                      >
+                        {platform.icon}
+                      </div>
+                      <Sparkles
+                        className={`w-5 h-5 text-${platform.color}-500 opacity-0 group-hover:opacity-100 transition-opacity`}
+                      />
+                    </div>
+
+                    {/* Info */}
+                    <div>
+                      <h3 className="text-xl font-semibold mb-2">
+                        {platform.name}
+                      </h3>
+                      <p className="text-gray-400 text-sm">
+                        {platform.description}
+                      </p>
+                    </div>
+
+                    {/* Features */}
+                    <div className="space-y-3">
+                      {platform.features.map((feature, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center gap-2 text-sm text-gray-300"
+                        >
+                          <div
+                            className={`w-1 h-1 rounded-full bg-${platform.color}-500`}
+                          />
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Action */}
+                    <a
+                      href={`/${platform.id}`}
+                      className={`inline-flex items-center gap-2 text-${platform.color}-500 group-hover:gap-3 transition-all`}
+                    >
+                      Explore {platform.name}
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    </a>
                   </div>
                 </div>
-
-                {/* Features List */}
-                <div className="flex-1">
-                  {app.features.map((feature, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center text-gray-300 mb-2"
-                    >
-                      <ArrowRight className="w-4 h-4 mr-2 text-gray-500" />
-                      {feature}
-                    </div>
-                  ))}
-                </div>
               </div>
-
-              {/* Launch Button - Fixed at bottom */}
-              <div className="p-6 pt-0">
-                <a
-                  href={app.path}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors"
-                >
-                  Launch {app.title}
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

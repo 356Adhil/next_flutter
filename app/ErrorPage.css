@@ -1,0 +1,77 @@
+.error-container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f9fafb 0%, #f3f4f6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.error-card {
+  max-width: 28rem;
+  width: 100%;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  text-align: center;
+}
+
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.error-icon {
+  height: 4rem;
+  width: 4rem;
+  color: #ef4444;
+}
+
+.error-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.error-message {
+  color: #4b5563;
+  margin-bottom: 2rem;
+}
+
+.button-wrapper {
+  position: relative;
+}
+
+.button-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #8b5cf6 0%, #d946ef 100%);
+  border-radius: 0.5rem;
+  filter: blur(8px);
+}
+
+.home-button {
+  position: relative;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: white;
+  color: black;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.home-button:hover {
+  opacity: 0.9;
+}
+
+.error-code {
+  margin-top: 2rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}

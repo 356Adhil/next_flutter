@@ -19,49 +19,50 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
-
-@keyframes blob {
+@keyframes float {
   0% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate(30px, -50px) scale(1.1);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
-  100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
+    transform: translate(0, 0);
   }
   50% {
-    background-position: 100% 50%;
+    transform: translate(-10px, -10px);
   }
   100% {
-    background-position: 0% 50%;
+    transform: translate(0, 0);
   }
 }
 
-@layer utilities {
-  .animation-delay-2000 {
-    animation-delay: 2s;
+@keyframes floatDelayed {
+  0% {
+    transform: translate(0, 0);
   }
-  .animation-delay-4000 {
-    animation-delay: 4s;
+  50% {
+    transform: translate(10px, -15px);
   }
-  .animate-blob {
-    animation: blob 7s infinite;
+  100% {
+    transform: translate(0, 0);
   }
-  .animate-gradient {
-    animation: gradient 15s ease infinite;
-    background-size: 200% 200%;
+}
+
+@keyframes floatSlow {
+  0% {
+    transform: translate(0, 0);
   }
-  .animate-fade-in {
-    animation: fadeIn 1s ease-in forwards;
+  50% {
+    transform: translate(-15px, 10px);
   }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatDelayed 12s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: floatSlow 15s ease-in-out infinite;
 }
