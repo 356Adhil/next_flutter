@@ -6,7 +6,8 @@ const nextConfig = {
   },
   async rewrites() {
     return [
-      // Flutter App Routes
+      // Flutter Apps Routes
+      // InstaSnap
       {
         source: "/instasnap",
         destination: "/flutter-builds/instasnap/index.html",
@@ -15,6 +16,26 @@ const nextConfig = {
         source: "/instasnap/:path*",
         destination: "/flutter-builds/instasnap/:path*",
       },
+      // TV App
+      {
+        source: "/tv",
+        destination: "/flutter-builds/tv/index.html",
+      },
+      {
+        source: "/tv/:path*",
+        destination: "/flutter-builds/tv/:path*",
+      },
+      // EventHex
+      {
+        source: "/eventhex",
+        destination: "/flutter-builds/eventhex/index.html",
+      },
+      {
+        source: "/eventhex/:path*",
+        destination: "/flutter-builds/eventhex/:path*",
+      },
+
+      // Shared Flutter files (will be served from any of the Flutter builds)
       {
         source: "/flutter.js",
         destination: "/flutter-builds/instasnap/flutter.js",
@@ -83,7 +104,7 @@ const nextConfig = {
       },
       {
         source:
-          "/:path((?!instasnap|flutter|main\\.dart\\.js|assets|canvaskit|icons).*)",
+          "/:path((?!instasnap|tv|eventhex|flutter|main\\.dart\\.js|assets|canvaskit|icons).*)",
         destination: "/react-builds/app/index.html",
       },
     ];
