@@ -77,45 +77,6 @@ const nextConfig = {
         source: "/version.json",
         destination: "/flutter-builds/instasnap/version.json",
       },
-
-      // // React App Routes
-      // {
-      //   source: "/",
-      //   destination: "/react-builds/app/index.html",
-      // },
-      // {
-      //   source: "/static/js/:path*",
-      //   destination: "/react-builds/app/static/js/:path*",
-      // },
-      // {
-      //   source: "/static/css/:path*",
-      //   destination: "/react-builds/app/static/css/:path*",
-      // },
-      // {
-      //   source: "/static/media/:path*",
-      //   destination: "/react-builds/app/static/media/:path*",
-      // },
-      // {
-      //   source: "/manifest.json",
-      //   destination: "/react-builds/app/manifest.json",
-      // },
-      // {
-      //   source: "/manifest.webmanifest",
-      //   destination: "/react-builds/app/manifest.webmanifest",
-      // },
-      // {
-      //   source: "/asset-manifest.json",
-      //   destination: "/react-builds/app/asset-manifest.json",
-      // },
-      // {
-      //   source: "/robots.txt",
-      //   destination: "/react-builds/app/robots.txt",
-      // },
-      // {
-      //   source:
-      //     "/:path((?!instasnap|tv|eventhex|flutter|main\\.dart\\.js|assets|canvaskit|icons).*)",
-      //   destination: "/react-builds/app/index.html",
-      // },
     ];
   },
 };
