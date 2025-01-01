@@ -20,7 +20,11 @@ const SinglePageLanding = ({ setMessage }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const theme = useRef(null);
-  const domainUrl = "phygital-world.eventhex.ai";
+  const [domainUrl, setDomainUrl] = useState("");
+
+  useEffect(() => {
+    setDomainUrl(window.location.hostname);
+  }, []);
 
   useEffect(() => {
     const fetchEventData = async () => {
