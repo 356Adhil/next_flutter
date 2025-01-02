@@ -14,16 +14,19 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import styles from "./Header.module.css";
+import { useRouter } from "next/navigation";
 
 const SinglePageLanding = ({ setMessage }) => {
+  const router = useRouter();
   const [eventData, setEventData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const theme = useRef(null);
-  const [domainUrl, setDomainUrl] = useState("");
+  const [domainUrl, setDomainUrl] = useState("phygital-world.eventhex.ai");
 
   useEffect(() => {
-    setDomainUrl(window.location.hostname);
+    setDomainUrl("phygital-world.eventhex.ai");
+    // setDomainUrl(window.location.hostname);
   }, []);
 
   useEffect(() => {
@@ -41,6 +44,26 @@ const SinglePageLanding = ({ setMessage }) => {
         const data = await response.json();
         setEventData(data);
         theme.current = data.response.event.themeColor;
+        // Handle routing based on API response
+        if (data.response.route) {
+          const route = data.response.event.defaultRoute;
+
+          switch (route) {
+            case "default":
+              // Stay on the landing page ('/')
+              break;
+            case "instasnap":
+              router.push("/instasnap");
+              return;
+            case "eventhex":
+              router.push("/eventhex");
+              return;
+            default:
+              // For any unexpected route value, stay on landing page
+              console.warn("Unexpected route value:", route);
+              break;
+          }
+        }
       } catch (err) {
         setError(err.message);
       } finally {
@@ -49,7 +72,7 @@ const SinglePageLanding = ({ setMessage }) => {
     };
 
     fetchEventData();
-  }, []);
+  }, [domainUrl, router]);
 
   if (isLoading) {
     return (
