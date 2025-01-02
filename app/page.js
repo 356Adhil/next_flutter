@@ -22,11 +22,11 @@ const SinglePageLanding = ({ setMessage }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const theme = useRef(null);
-  const [domainUrl, setDomainUrl] = useState("phygital-world.eventhex.ai");
+  const [domainUrl, setDomainUrl] = useState(window.location.hostname);
 
   useEffect(() => {
-    setDomainUrl("phygital-world.eventhex.ai");
-    // setDomainUrl(window.location.hostname);
+    // setDomainUrl("phygital-world.eventhex.ai");
+    setDomainUrl(window.location.hostname);
   }, []);
 
   useEffect(() => {
