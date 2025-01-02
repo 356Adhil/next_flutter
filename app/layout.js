@@ -1,4 +1,6 @@
+// app/layout.js
 import { Geist, Geist_Mono } from "next/font/google";
+import { defaultMetadata } from "@/lib/metadata";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -11,10 +13,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "EventHex - Next.js",
-  description: "EventHex is a complete platform for seamless event organization",
-};
+export const metadata = defaultMetadata;
 
 export default function RootLayout({ children }) {
   return (

@@ -1,3 +1,4 @@
+// middleware.js ( This middleware will rewrite all requests that do not match the Flutter paths or resources to the 404 page. )
 import { NextResponse } from "next/server";
 
 export function middleware(request) {
