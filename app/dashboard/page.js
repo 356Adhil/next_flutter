@@ -50,7 +50,7 @@ export default function Home() {
       ],
     },
     {
-      id: "Tv App",
+      id: "tv",
       name: "Tv App",
       title: "Intelligent Session Manager",
       description: "Track and manage live sessions effortlessly",
