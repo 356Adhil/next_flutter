@@ -44,38 +44,72 @@ const nextConfig = {
         destination: "/flutter-builds/eventhex/:path*",
       },
 
-      // Shared Flutter files (will be served from any of the Flutter builds)
+      // Dynamic Flutter file routing based on the app
+      {
+        source: "/:app(instasnap|tv|eventhex)/flutter.js",
+        destination: "/flutter-builds/:app/flutter.js",
+      },
+      {
+        source: "/:app(instasnap|tv|eventhex)/flutter_bootstrap.js",
+        destination: "/flutter-builds/:app/flutter_bootstrap.js",
+      },
+      {
+        source: "/:app(instasnap|tv|eventhex)/flutter_service_worker.js",
+        destination: "/flutter-builds/:app/flutter_service_worker.js",
+      },
+      {
+        source: "/:app(instasnap|tv|eventhex)/main.dart.js",
+        destination: "/flutter-builds/:app/main.dart.js",
+      },
+      {
+        source: "/:app(instasnap|tv|eventhex)/assets/:path*",
+        destination: "/flutter-builds/:app/assets/:path*",
+      },
+      {
+        source: "/:app(instasnap|tv|eventhex)/canvaskit/:path*",
+        destination: "/flutter-builds/:app/canvaskit/:path*",
+      },
+      {
+        source: "/:app(instasnap|tv|eventhex)/icons/:path*",
+        destination: "/flutter-builds/:app/icons/:path*",
+      },
+      {
+        source: "/:app(instasnap|tv|eventhex)/version.json",
+        destination: "/flutter-builds/:app/version.json",
+      },
+
+      // Fallback routes for root-level Flutter files
       {
         source: "/flutter.js",
-        destination: "/flutter-builds/instasnap/flutter.js",
+        destination: "/flutter-builds/shared/flutter.js",
       },
       {
         source: "/flutter_bootstrap.js",
-        destination: "/flutter-builds/instasnap/flutter_bootstrap.js",
+        destination: "/flutter-builds/shared/flutter_bootstrap.js",
       },
       {
         source: "/flutter_service_worker.js",
-        destination: "/flutter-builds/instasnap/flutter_service_worker.js",
+        destination: "/flutter-builds/shared/flutter_service_worker.js",
       },
       {
         source: "/main.dart.js",
-        destination: "/flutter-builds/instasnap/main.dart.js",
+        destination: "/flutter-builds/shared/main.dart.js",
       },
       {
         source: "/assets/:path*",
-        destination: "/flutter-builds/instasnap/assets/:path*",
+        destination: "/flutter-builds/shared/assets/:path*",
       },
       {
         source: "/canvaskit/:path*",
-        destination: "/flutter-builds/instasnap/canvaskit/:path*",
+        destination: "/flutter-builds/shared/canvaskit/:path*",
       },
       {
         source: "/icons/:path*",
-        destination: "/flutter-builds/instasnap/icons/:path*",
+        destination: "/flutter-builds/shared/icons/:path*",
       },
       {
         source: "/version.json",
-        destination: "/flutter-builds/instasnap/version.json",
+        destination: "/flutter-builds/shared/version.json",
       },
     ];
   },
